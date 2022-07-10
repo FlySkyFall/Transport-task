@@ -1,5 +1,6 @@
 #include "stdafx.h" 
 #include "GrHead.h" 
+#include <iostream>
 
 void ReadGraph ( 
 	// Указатель на файл данных 
@@ -15,8 +16,8 @@ void ReadGraph (
 	fopen_s(&pStrInp, pFileInp, "r" ); 
 	if( pStrInp == NULL ) 
 	{ 
-		printf( "\n Ошибка 50, Файл %s для чтения не " 
-		"открыт \n", pFileInp ) ; 
+		std::cout << "\n Ошибка 50, Файл %s для чтения не " 
+		"открыт \n" << pFileInp << std::endl; 
 		exit ( 50 ) ; 
 	} 
 
@@ -24,15 +25,15 @@ void ReadGraph (
 	RetCode = fscanf_s( pStrInp, "%d", &Gr.NumTop ) ; 
 	if( RetCode != 1 ) 
 	{ 
-		printf ( "\n Ошибка 60, Ошибка при чтении числа " 
-		"вершин графа \n"); 
+		std::cout << "\n Ошибка 60, Ошибка при чтении числа "
+		"вершин графа \n" << std::endl;
 		exit ( 60 ); 
 	} 
 	RetCode = fscanf_s ( pStrInp, " %d", &Gr.NumArc ) ; 
 	if( RetCode !=1) 
 	{ 
-		printf ( "\n Ошибка 70, Ошибка при чтении числа " 
-		"ребер графа \n" ) ; 
+		std::cout << "\n Ошибка 70, Ошибка при чтении числа "
+		"ребер графа \n" << std::endl;
 		exit ( 70 ) ; 
 	} 
 
@@ -50,38 +51,38 @@ void ReadGraph (
 			( Gr.pArc[i].last < 0 ) || 
 			( Gr.pArc[i].last >= Gr.NumTop ) ) 
 		{ 
-			printf( "\n Ошибка 75. Индексы вершин д.б. в " 
-			"диапазоне О. . %d \n " , Gr.NumTop-1 ) ; 
+			std::cout << "\n Ошибка 75. Индексы вершин д.б. в "
+			"диапазоне О. . %d \n " << Gr.NumTop-1 << std::endl;
 			exit ( 75 ); 
 		} 
 	} 
 	if( RetCode < 3*Gr.NumArc ) 
 	{ 
-		printf( "\n Ошибка 80. Ошибка чтения элементов " 
-		"массива ребер \n" ) ; 
+		std::cout << "\n Ошибка 80. Ошибка чтения элементов "
+		"массива ребер \n" << std::endl;
 		exit ( 80 ) ; 
 	} 
 	// Чтение информации о вершинах - старте и финише пути 
 	RetCode = fscanf_s ( pStrInp, "%d", &start ) ; 
 	if( RetCode != 1 ) 
 	{ 
-		printf( "\n Ошибка 90. Ошибка при чтении начальной" 
-		" вершины пути \n" ) ; 
+		std::cout << "\n Ошибка 90. Ошибка при чтении начальной"
+		" вершины пути \n" << std::endl;
 		exit ( 90 ) ; 
 	} 
 	RetCode = fscanf_s ( pStrInp, " %d", &finish ) ; 
 	if( RetCode != 1 ) 
 	{ 
-		printf( "\n Ошибка 100. Ошмбка при чтении конечной" 
-		" вершины пути \n" ); 
+		std::cout << "\n Ошибка 100. Ошмбка при чтении конечной"
+		" вершины пути \n" << std::endl;
 		exit ( 100 ) ; 
 	} 
 	// Закрытие файла ввода 
 	RetCode1 = fclose( pStrInp ) ; 
 	if( RetCode1 == EOF ) 
 	{ 
-		printf( "\n Ошибка 110. Ошибка закрытия файла %s \n", 
-		pFileInp ) ; 
+		std::cout << "\n Ошибка 110. Ошибка закрытия файла %s \n" <<
+		pFileInp << std::endl;
 		exit ( 110 ) ; 
 	} 
 	return;
@@ -99,8 +100,8 @@ void WriteGraph (
 	fopen_s( &pStrOut, pFileOut, pMode ); 
 	if( pStrOut == NULL ) 
 	{ 
-		printf( "\n Ошибка 120, Файл %s для вывода не " 
-		"открыт \n", pFileOut ); 
+		std::cout << "\n Ошибка 120, Файл %s для вывода не "
+		"открыт \n" << pFileOut << std::endl;
 		exit ( 120 ) ; 
 	} 
 	// Печать информации о графе 
@@ -121,8 +122,8 @@ void WriteGraph (
 	RetCode1 = fclose( pStrOut ); 
 	if( RetCode1 == EOF ) 
 	{ 
-		printf( "\n Ошибка 150. Файл %s не закрыт \n ", 
-		pFileOut ); 
+		std::cout << "\n Ошибка 150. Файл %s не закрыт \n " <<
+		pFileOut << std::endl; 
 		exit ( 150 ); 
 	} 
 	return; 

@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
-#include "GrHead.h" 
+#include "GrHead.h"
+#include <iostream>
  
 int start; // Вершина - старт пути 
 
@@ -108,15 +109,15 @@ int TempTop, // Текуш,ая вершина пути
 	fopen_s( &pStrOut, pFileOut, pMode); 
 	if( pStrOut == NULL ) 
 	{ 
-		printf( "\n Ошибка 140. Файл %s для вывода не " 
-		"открыт \n" , pFileOut ); 
+		std::cout << "\n Ошибка 140. Файл %s для вывода не " 
+		"открыт \n" << pFileOut << std::endl; 
 		exit ( 140 ) ; 
 	} 
 	// Печать информации о найденном пути 
 	if( !pMinWay[ finish ].exist ) 
 	{ 
-		printf ( 
-			"\n Искомого пути не существует \n" ) ; 
+		std::cout << 
+			"\n Искомого пути не существует \n" << std::endl; 
 	} 
 	else 
 	{ 
@@ -139,8 +140,8 @@ int TempTop, // Текуш,ая вершина пути
 	RetCode1 = fclose( pStrOut ) ; 
 	if( RetCode1 == EOF ) 
 	{ 
-		printf( "\n Ошибка 150. Файл %s не закрыт \n", 
-		pFileOut ) ; 
+		std::cout << "\n Ошибка 150. Файл %s не закрыт \n" << 
+		pFileOut << std::endl; 
 		exit ( 150 ) ; 
 	} 
 	// Освобождение динамической памяти 
